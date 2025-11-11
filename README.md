@@ -1,6 +1,15 @@
-# MovieDB🍿🎬 - React Movie Website
+# MovieDB🍿🎬 - React Tailwind Movie Website
 
 A modern movie discovery website built with React, Vite, and Tailwind CSS.
+
+## Features
+
+* Browse trending, popular, top-rated, and upcoming movies
+* Search movies with real-time results
+* Add movies to watchlist (persists in localStorage)
+* Detailed movie information with cast and crew
+* Responsive design for all devices.
+
 
 <img width="1852" height="824" alt="Screenshot 2025-09-17 172839" src="https://github.com/user-attachments/assets/5eb503af-b7f8-4cdf-b27d-6332c1c800c2" />
 
@@ -10,15 +19,8 @@ A modern movie discovery website built with React, Vite, and Tailwind CSS.
 
 <img width="1896" height="900" alt="Screenshot 2025-09-17 173229" src="https://github.com/user-attachments/assets/668a331b-70de-41be-a66f-a858fb8eeee9" />
 
-## Features
 
-- Browse trending, popular, top-rated, and upcoming movies
-- Search movies with real-time results
-- Add movies to watchlist (persists in localStorage)
-- Detailed movie information with cast and crew
-- Responsive design for all devices.
-
-## Setup
+## How to Setup
 
 1. Clone the repository
 2. Install dependencies: `npm install`
