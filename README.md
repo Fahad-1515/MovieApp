@@ -1,4 +1,4 @@
-# MovieApp🍿🎬 - React Tailwind Movie Website
+# MovieApp🍿🎬 - React Movie Website
 
 A modern movie discovery website built with React, Vite, and Tailwind CSS.
 
