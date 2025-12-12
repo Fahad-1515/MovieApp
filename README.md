@@ -1,6 +1,6 @@
 # MovieApp🍿🎬 - React Movie Website
 
-A modern movie discovery website built with React, Vite, and Tailwind CSS.
+A Movie discovery website built with React, Vite, and Tailwind CSS.
 
 ## Features
 
