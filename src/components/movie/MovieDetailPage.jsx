@@ -11,13 +11,19 @@ const MovieDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { movieData, loading, error } = useMovieDetails(id);
-  const { addToWatchlist, removeFromWatchlist, isInWatchlist } = useWatchlist();
+  const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist(); // Changed to watchlist
 
-  const isSaved = isInWatchlist(movieData?.id);
+  // Direct check from watchlist array - more reliable
+  const isSaved = movieData?.id ? watchlist.some(item => item.id === movieData.id) : false;
 
   const handleWatchlistToggle = () => {
-    if (isSaved) removeFromWatchlist(movieData.id);
-    else addToWatchlist(movieData);
+    if (!movieData?.id) return;
+    
+    if (isSaved) {
+      removeFromWatchlist(movieData.id);
+    } else {
+      addToWatchlist(movieData);
+    }
   };
 
   const handleBack = () => navigate(-1);
