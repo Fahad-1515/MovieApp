@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Heart } from "lucide-react";
-import { useWatchlist } from "../context/WatchlistContext";
+import { useWatchlist } from "../../context/WatchlistContext";
 
 const AddToWatchlistButton = ({ movie, size = "md", showLabel = false }) => {
   const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist();
