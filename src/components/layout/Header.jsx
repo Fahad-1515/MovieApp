@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Search, Heart, Home } from "lucide-react";
 import { useWatchlist } from "../../context/WatchlistContext";
+import { MessageCircle } from "lucide-react";
 
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,8 +26,8 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link 
-            to="/" 
+          <Link
+            to="/"
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
             aria-label="Go to homepage"
           >
@@ -61,7 +62,10 @@ export const Header = () => {
           </form>
 
           {/* Navigation */}
-          <nav className="flex items-center space-x-2 md:space-x-4" aria-label="Main navigation">
+          <nav
+            className="flex items-center space-x-2 md:space-x-4"
+            aria-label="Main navigation"
+          >
             <Link
               to="/"
               className="text-gray-300 hover:text-white transition-colors p-2 rounded-md hover:bg-gray-700/50 relative group"
@@ -73,12 +77,20 @@ export const Header = () => {
                 Home
               </span>
             </Link>
-            
+            <Link
+              to="/chatbot"
+              className="text-gray-300 hover:text-white transition-colors p-2"
+              title="Movie Chatbot"
+            >
+              <MessageCircle className="w-5 h-5" />
+            </Link>
             <Link
               to="/watchlist"
               className="text-gray-300 hover:text-white transition-colors p-2 rounded-md hover:bg-gray-700/50 relative group"
               title="Watchlist"
-              aria-current={location.pathname === "/watchlist" ? "page" : undefined}
+              aria-current={
+                location.pathname === "/watchlist" ? "page" : undefined
+              }
             >
               <Heart className="w-5 h-5" />
               {watchlistCount > 0 && (
