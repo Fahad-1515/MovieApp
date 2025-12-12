@@ -1,6 +1,10 @@
 # MovieApp🍿🎬 - React Movie Website
 
-A Movie discovery website built with React, Vite, and Tailwind CSS.
+A MovieApp with real time search capability and book mark feature.
+
+## Tech Stack 
+
+  **React**,**Vite**,**TailwindCSS**,**HTML**,**CSS**,**Javascript**
 
 ## Features
 
