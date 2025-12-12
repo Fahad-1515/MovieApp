@@ -34,7 +34,7 @@ export const Header = () => {
               <span className="text-white font-bold text-lg">M</span>
             </div>
             <span className="text-white text-xl font-bold hidden sm:block tracking-tight">
-              MovieDB
+              Movies
             </span>
           </Link>
 
