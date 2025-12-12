@@ -6,16 +6,25 @@ import { Home } from "./pages/Home";
 import { MovieDetail } from "./pages/MovieDetail";
 import Search from "./pages/Search";
 import Watchlist from "./pages/Watchlist";
-import MovieChatbot from "./pages/MovieChatbot";
 import { NotFound } from "./pages/NotFound";
-import MovieBot from "./components/chatbot/MovieBot";
 import "./index.css";
+import { useEffect } from "react";
+
+// Scroll restoration on route change
+const ScrollToTop = () => {
+  const { pathname } = window.location;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 function App() {
   return (
     <ErrorBoundary>
       <WatchlistProvider>
         <Router>
+          <ScrollToTop />
           <div className="min-h-screen bg-gray-900">
             <Header />
             <main role="main">
@@ -24,13 +33,9 @@ function App() {
                 <Route path="/movie/:id" element={<MovieDetail />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/watchlist" element={<Watchlist />} />
-                <Route path="/chatbot" element={<MovieChatbot />} />{" "}
-                {/* Add this route */}
-                <Route path="/genre/:genreId" element={<Home />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </main>
-            <MovieBot /> {/* Add the floating chatbot */}
           </div>
         </Router>
       </WatchlistProvider>
