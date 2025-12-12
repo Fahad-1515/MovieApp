@@ -1,7 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useMovieDetails } from "../hooks/useMovieDetails";
 import { useWatchlist } from "../context/WatchlistContext";
-import { Header } from "../components/layout/Header";
 import Loader from "../components/ui/Loader";
 import Button from "../components/ui/Button";
 import Rating from "../components/movie/Rating";
@@ -58,7 +57,7 @@ export const MovieDetail = () => {
   if (loading)
     return (
       <div className="min-h-screen bg-gray-900">
-        <Header />
+
         <div className="pt-20 flex items-center justify-center min-h-screen">
           <Loader />
         </div>
@@ -68,7 +67,7 @@ export const MovieDetail = () => {
   if (error)
     return (
       <div className="min-h-screen bg-gray-900">
-        <Header />
+        
         <div className="pt-20 flex items-center justify-center min-h-screen">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-white mb-4">
@@ -84,7 +83,7 @@ export const MovieDetail = () => {
   if (!movieData)
     return (
       <div className="min-h-screen bg-gray-900">
-        <Header />
+        
         <div className="pt-20 flex items-center justify-center min-h-screen">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-white mb-4">
@@ -116,7 +115,7 @@ export const MovieDetail = () => {
         </div>
       )}
 
-      <Header />
+      
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-8 pt-24">
