@@ -1,50 +1,93 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Heart } from "lucide-react";
+import { useWatchlist } from "../context/WatchlistContext";
 
-const WatchlistContext = createContext();
+const AddToWatchlistButton = ({ movie, size = "md", showLabel = false }) => {
+  const { addToWatchlist, removeFromWatchlist, isInWatchlist, watchlist } = useWatchlist();
+  const [isAnimating, setIsAnimating] = useState(false);
 
-export const useWatchlist = () => {
-  const context = useContext(WatchlistContext);
-  if (!context)
-    throw new Error("useWatchlist must be used within WatchlistProvider");
-  return context;
-};
+  const isSaved = isInWatchlist(movie?.id);
 
-export const WatchlistProvider = ({ children }) => {
-  const [watchlist, setWatchlist] = useState([]);
+  const sizeClasses = { sm: "w-8 h-8", md: "w-10 h-10", lg: "w-12 h-12" };
+  const iconSizes = { sm: "w-4 h-4", md: "w-5 h-5", lg: "w-6 h-6" };
 
-  useEffect(() => {
-    const saved = localStorage.getItem("movie-watchlist");
-    if (saved) setWatchlist(JSON.parse(saved));
-  }, []);
+  const handleClick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    
+    // DEBUG: Check what we're receiving
+    console.log("=== DEBUG CLICK ===");
+    console.log("Movie object:", movie);
+    console.log("Movie ID:", movie?.id);
+    console.log("Movie ID type:", typeof movie?.id);
+    console.log("Is currently saved?", isSaved);
+    console.log("Full watchlist:", watchlist);
+    console.log("Watchlist IDs:", watchlist.map(m => m.id));
+    console.log("===================");
+    
+    setIsAnimating(true);
 
-  useEffect(() => {
-    localStorage.setItem("movie-watchlist", JSON.stringify(watchlist));
-  }, [watchlist]);
-
-  const addToWatchlist = (movie) => {
-    setWatchlist((prev) =>
-      prev.find((m) => m.id === movie.id) ? prev : [...prev, movie]
-    );
+    if (isSaved) {
+      console.log("Removing movie with ID:", movie.id);
+      removeFromWatchlist(movie.id);
+    } else {
+      console.log("Adding movie:", movie);
+      addToWatchlist(movie);
+    }
   };
 
-  const removeFromWatchlist = (movieId) => {
-    setWatchlist((prev) => prev.filter((movie) => movie.id !== movieId));
-  };
+  useEffect(() => {
+    let timer;
+    if (isAnimating) {
+      timer = setTimeout(() => setIsAnimating(false), 600);
+    }
+    return () => clearTimeout(timer);
+  }, [isAnimating]);
 
-  const isInWatchlist = (movieId) =>
-    watchlist.some((movie) => movie.id === movieId);
+  // Add this useEffect to monitor localStorage
+  useEffect(() => {
+    console.log("Button mounted for movie ID:", movie?.id);
+    console.log("Initial isSaved state:", isSaved);
+    
+    // Check localStorage directly
+    const stored = localStorage.getItem("movie-watchlist");
+    console.log("LocalStorage content:", stored);
+    if (stored) {
+      console.log("Parsed watchlist:", JSON.parse(stored));
+    }
+  }, [movie?.id, isSaved]);
 
   return (
-    <WatchlistContext.Provider
-      value={{
-        watchlist,
-        addToWatchlist,
-        removeFromWatchlist,
-        isInWatchlist,
-        watchlistCount: watchlist.length,
-      }}
+    <button
+      onClick={handleClick}
+      aria-label={isSaved ? "Remove from watchlist" : "Add to watchlist"}
+      aria-pressed={isSaved}
+      className={`
+        relative group flex items-center justify-center rounded-full transition-all duration-300
+        ${
+          isSaved
+            ? "bg-red-500/20 text-red-400 hover:bg-red-500/30"
+            : "bg-gray-800/50 text-gray-400 hover:bg-gray-700/70 hover:text-white"
+        }
+        ${sizeClasses[size]}
+        ${isAnimating ? "scale-110" : "scale-100"}
+      `}
     >
-      {children}
-    </WatchlistContext.Provider>
+      {isAnimating && (
+        <div className="absolute inset-0 rounded-full bg-red-400/30 animate-ping"></div>
+      )}
+
+      <Heart
+        className={`${iconSizes[size]} transition-all duration-300 ${
+          isSaved ? "fill-current" : ""
+        } ${isAnimating ? "scale-125" : "scale-100"}`}
+      />
+
+      {showLabel && (
+        <span className="ml-2 text-sm font-medium">
+          {isSaved ? "Saved" : "Save"}
+        </span>
+      )}
+    </button>
   );
 };
