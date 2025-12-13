@@ -1,10 +1,8 @@
 import { Star } from "lucide-react";
 
 const Rating = ({ rating = 0, max = 10, showNumber = true, size = "sm" }) => {
-  // Calculate percentage based on max rating
   const percentage = (rating / max) * 100;
   
-  // Calculate how many full stars and partial star
   const fullStars = Math.floor(percentage / 20);
   const partialStar = (percentage % 20) / 20;
 
@@ -19,10 +17,8 @@ const Rating = ({ rating = 0, max = 10, showNumber = true, size = "sm" }) => {
       className="flex items-center space-x-2"
       aria-label={`Rating: ${rating.toFixed(1)} out of ${max}`}
     >
-      {/* Stars container */}
       <div className="flex items-center">
         {[1, 2, 3, 4, 5].map((starIndex) => {
-          // Determine if star is full, partial, or empty
           let fillPercentage = 0;
           if (starIndex <= fullStars) {
             fillPercentage = 100; // Full star
@@ -41,7 +37,6 @@ const Rating = ({ rating = 0, max = 10, showNumber = true, size = "sm" }) => {
                 aria-hidden="true"
               />
               
-              {/* Foreground star (yellow) - clipped based on fill percentage */}
               {fillPercentage > 0 && (
                 <div 
                   className="absolute top-0 left-0 overflow-hidden"
@@ -61,7 +56,6 @@ const Rating = ({ rating = 0, max = 10, showNumber = true, size = "sm" }) => {
         })}
       </div>
 
-      {/* Numeric rating */}
       {showNumber && (
         <span className="text-white font-medium text-sm">
           {rating.toFixed(1)}
