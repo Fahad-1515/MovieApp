@@ -17,7 +17,6 @@ export const Header = () => {
     }
   };
 
-  // Auto-focus search when on search page
   const isSearchPage = location.pathname === "/search";
 
   return (
@@ -38,7 +37,6 @@ export const Header = () => {
             </span>
           </Link>
 
-          {/* Search Bar */}
           <form onSubmit={handleSearch} className="flex-1 max-w-2xl mx-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -51,7 +49,6 @@ export const Header = () => {
                 autoFocus={isSearchPage && !location.search.includes("q=")}
                 aria-label="Search movies"
               />
-              {/* Keyboard shortcut hint */}
               <div className="absolute right-3 top-1/2 -translate-y-1/2 hidden md:flex items-center">
                 <kbd className="px-2 py-1 text-xs bg-gray-800 text-gray-400 rounded border border-gray-700">
                   ⌘K
@@ -60,7 +57,6 @@ export const Header = () => {
             </div>
           </form>
 
-          {/* Navigation */}
           <nav className="flex items-center space-x-2 md:space-x-4" aria-label="Main navigation">
             <Link
               to="/"
@@ -93,7 +89,6 @@ export const Header = () => {
           </nav>
         </div>
 
-        {/* Quick Search Suggestions (optional enhancement) */}
         {searchQuery.length > 0 && (
           <div className="absolute top-full left-0 right-0 mt-1 mx-4 bg-gray-800 border border-gray-700 rounded-md shadow-xl z-50">
             <div className="p-3 text-center text-gray-400 text-sm">
