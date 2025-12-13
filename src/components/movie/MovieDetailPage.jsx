@@ -11,9 +11,8 @@ const MovieDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { movieData, loading, error } = useMovieDetails(id);
-  const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist(); // Changed to watchlist
+  const { addToWatchlist, removeFromWatchlist, watchlist } = useWatchlist(); 
 
-  // Direct check from watchlist array - more reliable
   const isSaved = movieData?.id ? watchlist.some(item => item.id === movieData.id) : false;
 
   const handleWatchlistToggle = () => {
@@ -45,7 +44,6 @@ const MovieDetailPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
-      {/* Backdrop */}
       {movieData.backdrop_path && (
         <div className="fixed inset-0 -z-10">
           <img
@@ -58,7 +56,6 @@ const MovieDetailPage = () => {
       )}
 
       <div className="relative z-10 container mx-auto px-4 py-8">
-        {/* Back Button */}
         <div className="flex items-center mb-6">
           <Button
             onClick={handleBack}
@@ -71,7 +68,6 @@ const MovieDetailPage = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Poster + Watchlist */}
           <div className="lg:col-span-1">
             <div className="sticky top-8">
               <img
@@ -97,7 +93,6 @@ const MovieDetailPage = () => {
             </div>
           </div>
 
-          {/* Movie Details */}
           <div className="lg:col-span-2">
             <div className="mb-6">
               <h1 className="text-4xl font-bold mb-2">{movieData.title}</h1>
@@ -123,7 +118,6 @@ const MovieDetailPage = () => {
                 )}
               </div>
 
-              {/* Genres */}
               {movieData.genres?.length > 0 && (
                 <div className="flex flex-wrap gap-2 mb-4">
                   {movieData.genres.map((genre) => (
@@ -138,7 +132,6 @@ const MovieDetailPage = () => {
               )}
             </div>
 
-            {/* Overview */}
             {movieData.overview && (
               <div className="mb-8">
                 <h2 className="text-2xl font-semibold mb-3">Overview</h2>
@@ -148,7 +141,6 @@ const MovieDetailPage = () => {
               </div>
             )}
 
-            {/* Additional Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {movieData.production_companies?.length > 0 && (
                 <div>
@@ -201,7 +193,6 @@ const MovieDetailPage = () => {
               </div>
             </div>
 
-            {/* Cast */}
             {movieData.credits?.cast?.length > 0 && (
               <div>
                 <h2 className="text-2xl font-semibold mb-4">Top Cast</h2>
