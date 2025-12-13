@@ -14,14 +14,11 @@ A MovieApp with real time search capability and book mark feature.
 * Detailed movie information with cast and crew
 * Responsive design for all devices.
 
+<img width="1904" height="884" alt="Screenshot 2025-12-13 124508" src="https://github.com/user-attachments/assets/a6e862d2-67e1-4a6a-9063-111f41fb38fc" />
+<img width="1910" height="875" alt="Screenshot 2025-12-13 124542" src="https://github.com/user-attachments/assets/d33a8f2a-c424-4bee-8772-82504d30c56f" />
+<img width="1902" height="865" alt="Screenshot 2025-12-13 124617" src="https://github.com/user-attachments/assets/033ca3c7-c7e2-4e8a-80c7-e9e2bfcde32c" />
+<img width="1915" height="878" alt="Screenshot 2025-12-13 124636" src="https://github.com/user-attachments/assets/569a67ed-4c81-466d-b2de-f3e036be57a4" />
 
-<img width="1852" height="824" alt="Screenshot 2025-09-17 172839" src="https://github.com/user-attachments/assets/5eb503af-b7f8-4cdf-b27d-6332c1c800c2" />
-
-<img width="1915" height="911" alt="Screenshot 2025-09-17 172918" src="https://github.com/user-attachments/assets/df53f6fd-c1bd-47f1-83f1-85deefd04fd6" />
-
-<img width="1905" height="913" alt="Screenshot 2025-09-17 173028" src="https://github.com/user-attachments/assets/b569978e-bfa8-4bf5-bc4d-bcd23cd2b320" />
-
-<img width="1896" height="900" alt="Screenshot 2025-09-17 173229" src="https://github.com/user-attachments/assets/668a331b-70de-41be-a66f-a858fb8eeee9" />
 
 
 ## How to Setup
