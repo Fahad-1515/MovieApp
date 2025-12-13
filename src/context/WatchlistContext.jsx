@@ -8,7 +8,6 @@ export const WatchlistProvider = ({ children }) => {
   const [watchlist, setWatchlist] = useState([]);
   const [watchlistCount, setWatchlistCount] = useState(0);
 
-  // Load watchlist from localStorage on initial render
   useEffect(() => {
     const savedWatchlist = localStorage.getItem("movieWatchlist");
     if (savedWatchlist) {
@@ -23,7 +22,6 @@ export const WatchlistProvider = ({ children }) => {
     }
   }, []);
 
-  // Save watchlist to localStorage whenever it changes
   useEffect(() => {
     if (watchlist.length > 0) {
       localStorage.setItem("movieWatchlist", JSON.stringify(watchlist));
@@ -33,7 +31,6 @@ export const WatchlistProvider = ({ children }) => {
     setWatchlistCount(watchlist.length);
   }, [watchlist]);
 
-  // Add movie to watchlist
   const addToWatchlist = useCallback((movie) => {
     if (!movie || !movie.id) {
       console.error("Invalid movie object:", movie);
@@ -55,23 +52,19 @@ export const WatchlistProvider = ({ children }) => {
     });
   }, []);
 
-  // Remove movie from watchlist
   const removeFromWatchlist = useCallback((movieId) => {
     setWatchlist(prev => prev.filter(movie => movie.id !== movieId));
   }, []);
 
-  // Check if movie is in watchlist
   const isInWatchlist = useCallback((movieId) => {
     return watchlist.some(movie => movie.id === movieId);
   }, [watchlist]);
 
-  // Clear entire watchlist
   const clearWatchlist = useCallback(() => {
     setWatchlist([]);
     localStorage.removeItem("movieWatchlist");
   }, []);
 
-  // Move movie up/down in watchlist
   const moveMovie = useCallback((movieId, direction) => {
     setWatchlist(prev => {
       const index = prev.findIndex(movie => movie.id === movieId);
