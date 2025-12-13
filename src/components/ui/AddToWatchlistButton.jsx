@@ -7,7 +7,6 @@ const AddToWatchlistButton = ({ movie, size = "md", showLabel = false }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
-  // Update isSaved when watchlist changes
   useEffect(() => {
     if (movie?.id) {
       const saved = watchlist.some(item => item.id === movie.id);
@@ -31,7 +30,6 @@ const AddToWatchlistButton = ({ movie, size = "md", showLabel = false }) => {
       addToWatchlist(movie);
     }
 
-    // Auto-reset animation after 600ms
     const timer = setTimeout(() => setIsAnimating(false), 600);
     return () => clearTimeout(timer);
   }, [movie, isSaved, addToWatchlist, removeFromWatchlist]);
