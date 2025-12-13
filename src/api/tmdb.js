@@ -1,7 +1,6 @@
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 
-// Cache for basic request deduplication
 const requestCache = new Map();
 
 const fetchFromAPI = async (endpoint, params = {}) => {
@@ -13,7 +12,6 @@ const fetchFromAPI = async (endpoint, params = {}) => {
   const url = `${BASE_URL}${endpoint}?${urlParams}`;
   const cacheKey = url;
 
-  // Return cached promise if same request is in progress
   if (requestCache.has(cacheKey)) {
     return requestCache.get(cacheKey);
   }
@@ -29,7 +27,6 @@ const fetchFromAPI = async (endpoint, params = {}) => {
         return response.json();
       })
       .finally(() => {
-        // Clean up cache after request completes
         requestCache.delete(cacheKey);
       });
 
@@ -42,7 +39,6 @@ const fetchFromAPI = async (endpoint, params = {}) => {
 };
 
 export const api = {
-  // Movie lists
   getTrendingMovies: (page = 1) =>
     fetchFromAPI("/trending/movie/week", { page: page.toString() }),
 
@@ -55,7 +51,6 @@ export const api = {
   getUpcomingMovies: (page = 1) =>
     fetchFromAPI("/movie/upcoming", { page: page.toString() }),
 
-  // Search
   searchMovies: (query, page = 1) =>
     fetchFromAPI("/search/movie", {
       query,
@@ -63,13 +58,11 @@ export const api = {
       include_adult: "false",
     }),
 
-  // Movie details - FIXED
   getMovieDetails: (movieId) =>
     fetchFromAPI(`/movie/${movieId}`, {
       append_to_response: "credits,videos,similar",
     }),
 
-  // Genre lists
   getMoviesByGenre: (genreId, page = 1) =>
     fetchFromAPI("/discover/movie", {
       with_genres: genreId.toString(),
