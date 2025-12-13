@@ -33,7 +33,6 @@ const MovieCard = ({ movie, className = "" }) => {
       onKeyPress={handleKeyPress}
       aria-label={`View details for ${movie.title}`}
     >
-      {/* Poster */}
       <div className="relative aspect-[2/3] overflow-hidden">
         {!imageLoaded && !imageError && (
           <div className="absolute inset-0 bg-gray-700 animate-pulse"></div>
@@ -55,18 +54,15 @@ const MovieCard = ({ movie, className = "" }) => {
             setImageLoaded(true);
           }}
         />
-        {/* Watchlist Button */}
         <div className="absolute top-2 right-2 z-10">
           <HeartIconButton movie={movie} size="sm" />
         </div>
-        {/* Hover Overlay */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <div className="flex items-center space-x-2 text-white">
             <Eye className="w-5 h-5" />
             <span className="font-medium">View Details</span>
           </div>
         </div>
-        {/* Rating Badge */}
         {movie.vote_average > 0 && (
           <div className="absolute top-2 left-2 bg-black/70 text-white px-2 py-1 rounded-md text-xs font-semibold backdrop-blur-sm">
             ⭐ {movie.vote_average.toFixed(1)}
@@ -74,7 +70,6 @@ const MovieCard = ({ movie, className = "" }) => {
         )}
       </div>
 
-      {/* Movie Info */}
       <div className="p-4">
         <h3
           className="font-semibold text-white text-sm mb-1 line-clamp-2"
