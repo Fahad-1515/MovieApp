@@ -35,7 +35,6 @@ export const Pagination = ({
         <ChevronLeft className="w-4 h-4" />
       </Button>
 
-      {/* First Page + Ellipsis */}
       {startPage > 1 && (
         <>
           <Button
@@ -49,7 +48,6 @@ export const Pagination = ({
         </>
       )}
 
-      {/* Page Numbers */}
       {pages.map((page) => (
         <Button
           key={page}
@@ -61,7 +59,6 @@ export const Pagination = ({
         </Button>
       ))}
 
-      {/* Last Page + Ellipsis */}
       {endPage < totalPages && (
         <>
           {endPage < totalPages - 1 && (
@@ -77,7 +74,6 @@ export const Pagination = ({
         </>
       )}
 
-      {/* Next Page Button */}
       <Button
         variant="outline"
         size="sm"
